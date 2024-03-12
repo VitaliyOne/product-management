@@ -25,6 +25,19 @@ h1, p {
   margin: 0;
 }
 
+.tooltip {
+  position: absolute;
+  margin-top: 10px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 9999;
+}
+
 .pageHeader{
   display: flex;
   justify-content: space-between;

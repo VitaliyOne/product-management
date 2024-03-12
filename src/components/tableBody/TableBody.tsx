@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { type ITableBodyProps } from './types';
+import Tooltip from '../tooltip/Tooltip';
 
 const TableBody: React.FC<ITableBodyProps> = ({ products }) => {
   const formatDate = (dateString: string) => {
@@ -26,11 +27,13 @@ const TableBody: React.FC<ITableBodyProps> = ({ products }) => {
           <td>{formatDate(item.createdAt)}</td>
           <td>{item.isArchived ? 'В архиве' : 'Активно'}</td>
           <td>
-            <img
-              alt="Логотип"
-              src="/iconQuestion.png"
-              style={{ verticalAlign: 'middle', width: '20px' }}
-            />
+            <Tooltip description={item.description ? item.description : 'Описание отсутствует'}>
+              <img
+                alt="Логотип"
+                src="/iconQuestion.png"
+                style={{ verticalAlign: 'middle', width: '20px', cursor: 'pointer' }}
+              />
+            </Tooltip>
           </td>
           <td>
             <Link to={`/edit/${item.id}`}>

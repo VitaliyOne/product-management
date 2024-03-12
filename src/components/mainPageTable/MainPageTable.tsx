@@ -8,7 +8,7 @@ const MainPageTable = () => {
     {
       id: '1',
       packsNumber: 10,
-      packageType: 'компрессия',
+      packageType: 'Компрессия',
       createdAt: '2024-03-08T12:00:00Z',
       isArchived: false,
       description: 'Описание товара 1'
@@ -16,7 +16,7 @@ const MainPageTable = () => {
     {
       id: '2',
       packsNumber: 20,
-      packageType: 'некомпрессия',
+      packageType: 'Некомпрессия',
       createdAt: '2024-03-07T12:00:00Z',
       isArchived: true,
       description: 'Описание товара 2'
@@ -24,7 +24,7 @@ const MainPageTable = () => {
     {
       id: '3',
       packsNumber: 15,
-      packageType: 'компрессия',
+      packageType: 'Компрессия',
       createdAt: '2024-03-06T12:00:00Z',
       isArchived: false,
       description: 'Описание товара 3'
