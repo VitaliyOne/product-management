@@ -32,8 +32,8 @@ const CreateForm = () => {
             <option value="" disabled>
               Выберите тип упаковки
             </option>
-            <option value="Компрессия">Компрессия</option>
-            <option value="Некомпрессия">Некомпрессия</option>
+            <option value="компрессия">компрессия</option>
+            <option value="некомпрессия">некомпрессия</option>
           </select>
           <span>Архивировано</span>
           <input type="checkbox" {...register('isArchived')} />

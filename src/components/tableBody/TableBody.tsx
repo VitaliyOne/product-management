@@ -1,9 +1,33 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { type ITableBodyProps } from './types';
 import Tooltip from '../tooltip/Tooltip';
 
-const TableBody: React.FC<ITableBodyProps> = ({ products }) => {
+const TableBody = () => {
+  const products = [
+    {
+      id: 'KatJDS1',
+      packsNumber: 24,
+      packageType: 'компрессия',
+      isArchived: true,
+      description: 'Описание продукции\nВ несколько строк',
+      createdAt: '2024-02-01T16:08:24.630Z'
+    },
+    {
+      id: '2Pj88FE',
+      packsNumber: 12,
+      packageType: 'некомпрессия',
+      isArchived: false,
+      createdAt: '2024-01-25T16:08:24.630Z'
+    },
+    {
+      id: '3s-oN_s',
+      packsNumber: 20,
+      packageType: 'компрессия',
+      isArchived: false,
+      description: 'Описание продукции\nВ несколько строк',
+      createdAt: '2024-01-23T16:08:24.630Z'
+    }
+  ];
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, '0');
@@ -11,15 +35,10 @@ const TableBody: React.FC<ITableBodyProps> = ({ products }) => {
     const year = date.getFullYear();
     return `${day}.${month}.${year}`;
   };
-  const sortedProducts = products.sort((a, b) => {
-    const dateA = new Date(a.createdAt).getTime();
-    const dateB = new Date(b.createdAt).getTime();
-    return dateB - dateA;
-  });
 
   return (
     <tbody>
-      {sortedProducts.map((item, index) => (
+      {products.map((item, index) => (
         <tr key={item.id}>
           <td>{index + 1}</td>
           <td>{item.packsNumber}</td>

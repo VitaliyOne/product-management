@@ -1,36 +1,33 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { type Product } from '../../types';
 
 const EditForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
-
-  const products: Product[] = [
+  const products = [
     {
-      id: '1',
-      packsNumber: 10,
-      packageType: 'Компрессия',
-      createdAt: '2024-03-08T12:00:00Z',
-      isArchived: false,
-      description: 'Описание товара 1'
-    },
-    {
-      id: '2',
-      packsNumber: 20,
-      packageType: 'Некомпрессия',
-      createdAt: '2024-03-07T12:00:00Z',
+      id: 'KatJDS1',
+      packsNumber: 24,
+      packageType: 'компрессия',
       isArchived: true,
-      description: 'Описание товара 2'
+      description: 'Описание продукции\nВ несколько строк',
+      createdAt: '2024-02-01T16:08:24.630Z'
     },
     {
-      id: '3',
-      packsNumber: 15,
-      packageType: 'Компрессия',
-      createdAt: '2024-03-06T12:00:00Z',
+      id: '2Pj88FE',
+      packsNumber: 12,
+      packageType: 'некомпрессия',
       isArchived: false,
-      description: 'Описание товара 3'
+      createdAt: '2024-01-25T16:08:24.630Z'
+    },
+    {
+      id: '3s-oN_s',
+      packsNumber: 20,
+      packageType: 'компрессия',
+      isArchived: false,
+      description: 'Описание продукции\nВ несколько строк',
+      createdAt: '2024-01-23T16:08:24.630Z'
     }
   ];
 
@@ -38,9 +35,11 @@ const EditForm = () => {
   const product = products.find((item) => item.id === id);
 
   const onSubmit = (data: object) => {
-    const createdAt = new Date().toISOString();
-    const newData = { ...data, createdAt };
-    console.log(newData);
+    const updatedProduct = {
+      ...product,
+      ...data
+    };
+    console.log(updatedProduct);
     reset();
     navigate('/');
   };
@@ -76,8 +75,8 @@ const EditForm = () => {
             <option defaultValue={product.packageType} disabled>
               {product.packageType}
             </option>
-            <option value="Компрессия">Компрессия</option>
-            <option value="Некомпрессия">Некомпрессия</option>
+            <option value="компрессия">компрессия</option>
+            <option value="некомпрессия">некомпрессия</option>
           </select>
           <span>Архивировано</span>
           <input type="checkbox" {...register('isArchived')} defaultChecked={product.isArchived} />
