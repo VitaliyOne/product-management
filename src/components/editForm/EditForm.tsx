@@ -3,14 +3,26 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import useAppSelector from '../../hooks/useAppSelector';
 import { selectSortedProducts } from '../../store/selectors/productsSelectors';
+import useAppDispatch from '../../hooks/useAppDispatch';
+import { removeProduct, updateProduct } from '../../store/reducers/products/slice';
 
 const EditForm = () => {
+  const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
-  const products = useAppSelector(selectSortedProducts);
 
+  const products = useAppSelector(selectSortedProducts);
   const { id } = useParams<{ id: string }>();
   const product = products.find((item) => item.id === id);
+
+  const onDeleteButtonClick = (id: string) => {
+    // eslint-disable-next-line no-alert
+    const isDeletionConfirmed = window.confirm('Вы уверены, что хотите удалить задачу?');
+    if (isDeletionConfirmed) {
+      dispatch(removeProduct(id));
+      navigate('/');
+    }
+  };
 
   if (!product) {
     return <h1>Продукт не найден</h1>;
@@ -21,7 +33,7 @@ const EditForm = () => {
       ...product,
       ...data
     };
-    console.log(updatedProduct);
+    dispatch(updateProduct(updatedProduct));
     reset();
     navigate('/');
   };
@@ -39,7 +51,7 @@ const EditForm = () => {
             type="number"
             required
             {...register('packsNumber')}
-            value={product.packsNumber}
+            defaultValue={product.packsNumber}
           />
           <span style={{ display: 'flex', alignItems: 'center' }}>
             Тип упаковки <b>*</b>
@@ -59,10 +71,18 @@ const EditForm = () => {
           <span>Архивировано</span>
           <input type="checkbox" {...register('isArchived')} defaultChecked={product.isArchived} />
           <span style={{ marginTop: '5px' }}>Описание</span>
-          <textarea className="textarea" {...register('description')} value={product.description} />
+          <textarea
+            className="textarea"
+            {...register('description')}
+            defaultValue={product.description}
+          />
         </nav>
         <div className="panelButton">
-          <button className="button redButton" type="button">
+          <button
+            className="button redButton"
+            type="button"
+            onClick={() => onDeleteButtonClick(product.id)}
+          >
             Удалить
           </button>
           <Link to="/">

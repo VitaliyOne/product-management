@@ -1,17 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import Tooltip from '../tooltip/Tooltip';
 import useAppSelector from '../../hooks/useAppSelector';
 import { selectSortedProducts } from '../../store/selectors/productsSelectors';
+import useAppDispatch from '../../hooks/useAppDispatch';
+import { removeProduct } from '../../store/reducers/products/slice';
 
 const TableBody = () => {
   const products = useAppSelector(selectSortedProducts);
+  const dispatch = useAppDispatch();
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, '0');
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const year = date.getFullYear();
     return `${day}.${month}.${year}`;
+  };
+
+  const onDeleteButtonClick = (id: string) => {
+    // eslint-disable-next-line no-alert
+    const isDeletionConfirmed = window.confirm('Вы уверены, что хотите удалить задачу?');
+    if (isDeletionConfirmed) dispatch(removeProduct(id));
   };
 
   return (
@@ -37,14 +48,20 @@ const TableBody = () => {
               <img
                 alt="Логотип"
                 src="/iconEdit.png"
-                style={{ verticalAlign: 'middle', width: '20px' }}
+                style={{ verticalAlign: 'middle', width: '20px', marginRight: '10px' }}
               />
             </Link>
-            <img
-              alt="Логотип"
-              src="/iconDelete.svg"
-              style={{ verticalAlign: 'middle', width: '25px', marginLeft: '20px' }}
-            />
+            <button
+              style={{ border: 'none', background: 'none', cursor: 'pointer' }}
+              type="button"
+              onClick={() => onDeleteButtonClick(item.id)}
+            >
+              <img
+                alt="Логотип"
+                src="/iconDelete.svg"
+                style={{ verticalAlign: 'middle', width: '25px', paddingLeft: '10px' }}
+              />
+            </button>
           </td>
         </tr>
       ))}
