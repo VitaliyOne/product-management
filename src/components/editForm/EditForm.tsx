@@ -1,38 +1,20 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import useAppSelector from '../../hooks/useAppSelector';
+import { selectSortedProducts } from '../../store/selectors/productsSelectors';
 
 const EditForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
-  const products = [
-    {
-      id: 'KatJDS1',
-      packsNumber: 24,
-      packageType: 'компрессия',
-      isArchived: true,
-      description: 'Описание продукции\nВ несколько строк',
-      createdAt: '2024-02-01T16:08:24.630Z'
-    },
-    {
-      id: '2Pj88FE',
-      packsNumber: 12,
-      packageType: 'некомпрессия',
-      isArchived: false,
-      createdAt: '2024-01-25T16:08:24.630Z'
-    },
-    {
-      id: '3s-oN_s',
-      packsNumber: 20,
-      packageType: 'компрессия',
-      isArchived: false,
-      description: 'Описание продукции\nВ несколько строк',
-      createdAt: '2024-01-23T16:08:24.630Z'
-    }
-  ];
+  const products = useAppSelector(selectSortedProducts);
 
   const { id } = useParams<{ id: string }>();
   const product = products.find((item) => item.id === id);
+
+  if (!product) {
+    return <h1>Продукт не найден</h1>;
+  }
 
   const onSubmit = (data: object) => {
     const updatedProduct = {
@@ -43,10 +25,6 @@ const EditForm = () => {
     reset();
     navigate('/');
   };
-
-  if (!product) {
-    return <h1>Продукт не найден</h1>;
-  }
 
   return (
     <div className="componentCreateForm">

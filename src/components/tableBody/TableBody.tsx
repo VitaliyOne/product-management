@@ -1,33 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Tooltip from '../tooltip/Tooltip';
+import useAppSelector from '../../hooks/useAppSelector';
+import { selectSortedProducts } from '../../store/selectors/productsSelectors';
 
 const TableBody = () => {
-  const products = [
-    {
-      id: 'KatJDS1',
-      packsNumber: 24,
-      packageType: 'компрессия',
-      isArchived: true,
-      description: 'Описание продукции\nВ несколько строк',
-      createdAt: '2024-02-01T16:08:24.630Z'
-    },
-    {
-      id: '2Pj88FE',
-      packsNumber: 12,
-      packageType: 'некомпрессия',
-      isArchived: false,
-      createdAt: '2024-01-25T16:08:24.630Z'
-    },
-    {
-      id: '3s-oN_s',
-      packsNumber: 20,
-      packageType: 'компрессия',
-      isArchived: false,
-      description: 'Описание продукции\nВ несколько строк',
-      createdAt: '2024-01-23T16:08:24.630Z'
-    }
-  ];
+  const products = useAppSelector(selectSortedProducts);
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, '0');

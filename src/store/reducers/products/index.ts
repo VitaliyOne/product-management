@@ -1,3 +1,3 @@
 import productsSlice from './slice';
 
-export default productsSlice.reducer;
+export default productsSlice;
