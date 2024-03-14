@@ -7,6 +7,8 @@ export interface ProductsState {
   products: Product[];
 }
 
+export type ProductCreateFormData = Omit<Product, 'id' | 'createdAt'>;
+
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,

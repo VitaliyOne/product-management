@@ -4,12 +4,10 @@ import TableBody from '../tableBody/TableBody';
 
 const MainPageTable = () => {
   return (
-    <div className="table-container">
-      <table className="table">
-        <TableHeader />
-        <TableBody />
-      </table>
-    </div>
+    <table className="table">
+      <TableHeader />
+      <TableBody />
+    </table>
   );
 };
 

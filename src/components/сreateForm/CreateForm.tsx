@@ -1,23 +1,28 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { v4 as uuidv4 } from 'uuid';
+import { useForm, type SubmitHandler, type FieldValues } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import { addProduct } from '../../store/reducers/products/slice';
-import { type Product } from '../../types';
 
 const CreateForm = () => {
   const dispatch = useAppDispatch();
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = (data: object) => {
-    const id = uuidv4();
-    const createdAt = new Date().toISOString();
-    const newProduct: Partial<Product> = { ...data, id, createdAt };
-    dispatch(addProduct(newProduct as Product));
-    reset();
-    navigate('/');
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    try {
+      const newProduct = {
+        description: data.description,
+        packageType: data.packageType,
+        isArchived: data.isArchived,
+        packsNumber: parseInt(data.packsNumber as string, 10)
+      };
+      await dispatch(addProduct(newProduct));
+      reset();
+      navigate('/');
+    } catch (error) {
+      console.error('Ошибка при создании продукта:', error);
+    }
   };
 
   return (

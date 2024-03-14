@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, type SubmitHandler, type FieldValues } from 'react-hook-form';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import useAppSelector from '../../hooks/useAppSelector';
 import { selectSortedProducts } from '../../store/selectors/productsSelectors';
@@ -15,11 +15,11 @@ const EditForm = () => {
   const { id } = useParams<{ id: string }>();
   const product = products.find((item) => item.id === id);
 
-  const onDeleteButtonClick = (id: string) => {
+  const onDeleteButtonClick = async (id: string) => {
     // eslint-disable-next-line no-alert
     const isDeletionConfirmed = window.confirm('Вы уверены, что хотите удалить задачу?');
     if (isDeletionConfirmed) {
-      dispatch(removeProduct(id));
+      await dispatch(removeProduct(id));
       navigate('/');
     }
   };
@@ -28,12 +28,16 @@ const EditForm = () => {
     return <h1>Продукт не найден</h1>;
   }
 
-  const onSubmit = (data: object) => {
-    const updatedProduct = {
-      ...product,
-      ...data
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const editProduct = {
+      id: product.id,
+      createdAt: product.createdAt,
+      description: data.description,
+      packageType: data.packageType,
+      isArchived: data.isArchived,
+      packsNumber: parseInt(data.packsNumber as string, 10)
     };
-    dispatch(updateProduct(updatedProduct));
+    await dispatch(updateProduct(editProduct));
     reset();
     navigate('/');
   };

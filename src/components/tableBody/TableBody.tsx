@@ -19,10 +19,12 @@ const TableBody = () => {
     return `${day}.${month}.${year}`;
   };
 
-  const onDeleteButtonClick = (id: string) => {
+  const onDeleteButtonClick = async (id: string) => {
     // eslint-disable-next-line no-alert
     const isDeletionConfirmed = window.confirm('Вы уверены, что хотите удалить задачу?');
-    if (isDeletionConfirmed) dispatch(removeProduct(id));
+    if (isDeletionConfirmed) {
+      await dispatch(removeProduct(id));
+    }
   };
 
   return (
