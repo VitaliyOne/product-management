@@ -9,11 +9,7 @@ const Tooltip: React.FC<ITooltipProps> = ({ description, children }) => {
   };
 
   return (
-    <div
-      style={{ position: 'relative', display: 'inline-block' }}
-      onMouseEnter={toggleTooltip}
-      onMouseLeave={toggleTooltip}
-    >
+    <div className="tooltipContainer" onMouseEnter={toggleTooltip} onMouseLeave={toggleTooltip}>
       {children}
       {showTooltip && <div className="tooltip">{description}</div>}
     </div>

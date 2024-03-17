@@ -2,7 +2,7 @@
 
 const MainPageTableHeader = () => {
   return (
-    <thead className="tableHeader">
+    <thead className="mainPageTableHeader">
       <tr>
         <th style={{ width: '43px' }}>№</th>
         <th style={{ width: '214px' }}>Кол-во пачек</th>

@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
-:root {
+ #root {
+  width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
   font-family: 'Montserrat', sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -12,4 +16,170 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+th, td {
+  border: 1px solid #C5C5C5;
+  padding: 8px;
+}
+
+h1, p {
+  margin: 0;
+}
+
+input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+}
+
+span{
+  font-size: 18px
+}
+
+span b {
+  color: red;
+  margin-left: 4px;
+}
+
+.mainPageTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.mainPageTableHeader{
+  font-weight: 600;
+  font-size: 14px;
+  color: #777777;
+}
+
+.mainPageTableIcon{
+  vertical-align: middle;
+  width: 20px; 
+  cursor: pointer
+}
+
+.iconDelete{
+  width: 25px;
+  padding-left: 10px
+}
+
+.mainPageTableButtonIcon{
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.pageHeader{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px
+}
+
+.componentCreateForm{
+  max-width: 670px;
+  margin: 0 auto; 
+  text-align: left;
+}
+
+.inputForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+  margin-top: 30px;
+}
+
+.inputFormFields{
+  display: grid;
+  row-gap: 25px;
+  column-gap: 30px;
+  grid-template-columns: 140px 500px;
+}
+
+.inputLabel{
+  display: flex; 
+  align-items: center
+}
+
+
+.panelButton{
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.tooltipContainer{
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  position: absolute;
+  margin-top: 10px;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 9999;
+}
+
+.select{
+  border: 1px solid #AAAAAA;
+  border-radius: 6px;
+  font-size: 16px;
+  padding: 8px 16px;
+  font-weight: 400;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 12 12"><path fill="%23AAAAAA" d="M3.7 4.7l2.5 2.5 2.5-2.5c.2-.2.5-.2.7 0s.2.5 0 .7l-3 3c-.2.2-.5.2-.7 0l-3-3c-.1-.2-.1-.5 0-.7s.5-.2.7 0z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 10px) center;
+  }
+
+.input{
+  border: 1px solid #AAAAAA;
+  border-radius: 6px;
+  font-size: 16px;
+  padding: 8px 16px;
+  font-weight: 400;
+}
+
+.textarea{
+  border: 1px solid #AAAAAA;
+  min-height: 64px;
+  border-radius: 6px;
+  font-size: 16px;
+  padding: 8px 16px;
+  resize: vertical;
+  height: 40px;
+  font-weight: 400;
+}
+  
+.button {
+  border-radius: 10px;
+  border: 1px solid black;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 13px 24px 13px 24px;
+  cursor: pointer;
+}
+
+.blackButton{
+  background-color: black;
+  color: white
+}
+
+.yellowButton{
+  background-color: #F7EE55;
+}
+
+.redButton{
+  background-color: #DA1515;
+  color: white
 }

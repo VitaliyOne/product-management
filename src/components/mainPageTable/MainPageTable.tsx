@@ -3,7 +3,7 @@ import MainPageTableHeader from '../mainPageTableHeader';
 
 const MainPageTable = () => {
   return (
-    <table className="table">
+    <table className="mainPageTable">
       <MainPageTableHeader />
       <MainPageTableBody />
     </table>

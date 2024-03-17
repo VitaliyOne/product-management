@@ -46,7 +46,7 @@ const EditForm = () => {
       <h1>Редактирование типа продукции</h1>
       <form className="inputForm" onSubmit={handleSubmit(onSubmit)}>
         <nav className="inputFormFields">
-          <span style={{ display: 'flex', alignItems: 'center' }}>
+          <span className="inputLabel">
             Кол-во пачек <b>*</b>
           </span>
           <input
@@ -56,7 +56,7 @@ const EditForm = () => {
             {...register('packsNumber')}
             defaultValue={product.packsNumber}
           />
-          <span style={{ display: 'flex', alignItems: 'center' }}>
+          <span className="inputLabel">
             Тип упаковки <b>*</b>
           </span>
           <select

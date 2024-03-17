@@ -30,11 +30,11 @@ const CreateForm = () => {
       <h1>Создание типа продукции</h1>
       <form className="inputForm" onSubmit={handleSubmit(onSubmit)}>
         <nav className="inputFormFields">
-          <span style={{ display: 'flex', alignItems: 'center' }}>
+          <span className="inputLabel">
             Кол-во пачек <b>*</b>
           </span>
           <input className="input" type="number" required {...register('packsNumber')} />
-          <span style={{ display: 'flex', alignItems: 'center' }}>
+          <span className="inputLabel">
             Тип упаковки <b>*</b>
           </span>
           <select className="select" defaultValue="" required {...register('packageType')}>

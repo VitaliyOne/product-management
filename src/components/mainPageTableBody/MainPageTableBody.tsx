@@ -44,31 +44,19 @@ const MainPageTableBody = () => {
           <td>{item.isArchived ? 'В архиве' : 'Активно'}</td>
           <td>
             <Tooltip description={item.description ? item.description : 'Описание отсутствует'}>
-              <img
-                alt="Логотип"
-                src="/iconQuestion.png"
-                style={{ verticalAlign: 'middle', width: '20px', cursor: 'pointer' }}
-              />
+              <img alt="Описание" className="mainPageTableIcon" src="/iconQuestion.png" />
             </Tooltip>
           </td>
           <td>
             <Link to={`/edit/${item.id}`}>
-              <img
-                alt="Логотип"
-                src="/iconEdit.png"
-                style={{ verticalAlign: 'middle', width: '20px', marginRight: '10px' }}
-              />
+              <img alt="Редактировать" className="mainPageTableIcon" src="/iconEdit.png" />
             </Link>
             <button
-              style={{ border: 'none', background: 'none', cursor: 'pointer' }}
+              className="mainPageTableButtonIcon"
               type="button"
               onClick={() => onDeleteButtonClick(item.id)}
             >
-              <img
-                alt="Логотип"
-                src="/iconDelete.svg"
-                style={{ verticalAlign: 'middle', width: '25px', paddingLeft: '10px' }}
-              />
+              <img alt="Удалить" className="mainPageTableIcon iconDelete" src="/iconDelete.svg" />
             </button>
           </td>
         </tr>
