@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import { type ProductCreateFormData } from './types';
-import { Product } from '../../../types';
+import { type Product } from '../../../types';
 
 export const fetchProductsFromServer = async () => {
   try {
-    const response = await fetch('http://localhost:8081/productTypes');
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/productTypes`);
     if (!response.ok) {
       throw new Error('Ошибка получения продукта');
     }
@@ -18,7 +18,7 @@ export const fetchProductsFromServer = async () => {
 
 export const createProductOnServer = async (product: ProductCreateFormData) => {
   try {
-    const response = await fetch('http://localhost:8081/productTypes', {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/productTypes`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -40,7 +40,7 @@ export const updateProductOnServer = async (product: Product) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { id, createdAt, ...editProduct } = product;
   try {
-    const response = await fetch(`http://localhost:8081/productTypes/${id}`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/productTypes/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ export const updateProductOnServer = async (product: Product) => {
 
 export const deleteProductOnServer = async (productId: string) => {
   try {
-    const response = await fetch(`http://localhost:8081/productTypes/${productId}`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/productTypes/${productId}`, {
       method: 'DELETE'
     });
     if (!response.ok) {

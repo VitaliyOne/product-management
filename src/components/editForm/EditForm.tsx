@@ -1,10 +1,9 @@
-import React from 'react';
 import { useForm, type SubmitHandler, type FieldValues } from 'react-hook-form';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import useAppSelector from '../../hooks/useAppSelector';
-import { selectSortedProducts } from '../../store/selectors/productsSelectors';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import { removeProduct, updateProduct } from '../../store/reducers/products/slice';
+import { selectSortedProducts } from '../../store/reducers/products/selectors';
 
 const EditForm = () => {
   const dispatch = useAppDispatch();
@@ -17,7 +16,7 @@ const EditForm = () => {
 
   const onDeleteButtonClick = async (id: string) => {
     // eslint-disable-next-line no-alert
-    const isDeletionConfirmed = window.confirm('Вы уверены, что хотите удалить задачу?');
+    const isDeletionConfirmed = window.confirm('Вы уверены, что хотите удалить продукт?');
     if (isDeletionConfirmed) {
       await dispatch(removeProduct(id));
       navigate('/');

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { type RootState } from '../index';
-import { type ProductsState } from '../reducers/products/types';
+import { type ProductsState } from './types';
+import { type RootState } from '../..';
 
 const selectProducts = (state: RootState) => state.products;
 

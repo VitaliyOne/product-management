@@ -1,6 +1,5 @@
-import React from 'react';
-import MainPageTable from '../mainPageTable/MainPageTable';
-import MainPageHeader from '../mainPageHeader/MainPageHeader';
+import MainPageTable from '../mainPageTable';
+import MainPageHeader from '../mainPageHeader';
 
 const MainPage = () => {
   return (

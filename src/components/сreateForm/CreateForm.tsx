@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm, type SubmitHandler, type FieldValues } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import useAppDispatch from '../../hooks/useAppDispatch';
@@ -21,6 +20,7 @@ const CreateForm = () => {
       reset();
       navigate('/');
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Ошибка при создании продукта:', error);
     }
   };

@@ -1,15 +1,21 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Tooltip from '../tooltip/Tooltip';
 import useAppSelector from '../../hooks/useAppSelector';
-import { selectSortedProducts } from '../../store/selectors/productsSelectors';
-import useAppDispatch from '../../hooks/useAppDispatch';
-import { removeProduct } from '../../store/reducers/products/slice';
 
-const TableBody = () => {
+import useAppDispatch from '../../hooks/useAppDispatch';
+import { fetchProducts, removeProduct } from '../../store/reducers/products/slice';
+import { selectSortedProducts } from '../../store/reducers/products/selectors';
+
+const MainPageTableBody = () => {
   const products = useAppSelector(selectSortedProducts);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    dispatch(fetchProducts()).catch((error) => console.log(error));
+  }, [dispatch]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -21,7 +27,7 @@ const TableBody = () => {
 
   const onDeleteButtonClick = async (id: string) => {
     // eslint-disable-next-line no-alert
-    const isDeletionConfirmed = window.confirm('Вы уверены, что хотите удалить задачу?');
+    const isDeletionConfirmed = window.confirm('Вы уверены, что хотите удалить продукт?');
     if (isDeletionConfirmed) {
       await dispatch(removeProduct(id));
     }
@@ -71,4 +77,4 @@ const TableBody = () => {
   );
 };
 
-export default TableBody;
+export default MainPageTableBody;

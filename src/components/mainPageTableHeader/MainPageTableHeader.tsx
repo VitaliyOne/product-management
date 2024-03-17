@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React from 'react';
 
-const TableHeader = () => {
+const MainPageTableHeader = () => {
   return (
     <thead className="tableHeader">
       <tr>
@@ -17,4 +16,4 @@ const TableHeader = () => {
   );
 };
 
-export default TableHeader;
+export default MainPageTableHeader;

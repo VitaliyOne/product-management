@@ -1,12 +1,11 @@
-import React from 'react';
-import TableHeader from '../tableHeader/TableHeader';
-import TableBody from '../tableBody/TableBody';
+import MainPageTableBody from '../mainPageTableBody';
+import MainPageTableHeader from '../mainPageTableHeader';
 
 const MainPageTable = () => {
   return (
     <table className="table">
-      <TableHeader />
-      <TableBody />
+      <MainPageTableHeader />
+      <MainPageTableBody />
     </table>
   );
 };
