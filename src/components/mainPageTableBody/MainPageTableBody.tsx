@@ -5,7 +5,7 @@ import Tooltip from '../tooltip/Tooltip';
 import useAppSelector from '../../hooks/useAppSelector';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
-import { fetchProducts, removeProduct } from '../../store/reducers/products/slice';
+import { getProducts, removeProduct } from '../../store/reducers/products/slice';
 import { selectSortedProducts } from '../../store/reducers/products/selectors';
 
 const MainPageTableBody = () => {
@@ -14,7 +14,7 @@ const MainPageTableBody = () => {
 
   useEffect(() => {
     // eslint-disable-next-line no-console
-    dispatch(fetchProducts()).catch((error) => console.log(error));
+    dispatch(getProducts()).catch((error) => console.log(error));
   }, [dispatch]);
 
   const formatDate = (dateString: string) => {
