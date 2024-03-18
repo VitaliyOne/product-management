@@ -7,7 +7,12 @@ import { selectSortedProducts } from '../../store/reducers/products/selectors';
 
 const EditForm = () => {
   const dispatch = useAppDispatch();
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm();
   const navigate = useNavigate();
 
   const products = useAppSelector(selectSortedProducts);
@@ -44,17 +49,19 @@ const EditForm = () => {
   return (
     <div className="componentCreateForm">
       <h1>Редактирование типа продукции</h1>
-      <form className="inputForm" onSubmit={handleSubmit(onSubmit)}>
+      <form className="inputForm" noValidate onSubmit={handleSubmit(onSubmit)}>
         <nav className="inputFormFields">
           <span className="inputLabel">
             Кол-во пачек <b>*</b>
           </span>
           <input
             className="input"
-            type="number"
-            required
-            {...register('packsNumber')}
             defaultValue={product.packsNumber}
+            type="number"
+            {...register('packsNumber', {
+              required: 'Заполните обязательные поля!',
+              validate: (value: number) => value >= 0 || 'Кол-во пачек не может быть отрицательным!'
+            })}
           />
           <span className="inputLabel">
             Тип упаковки <b>*</b>
@@ -62,8 +69,7 @@ const EditForm = () => {
           <select
             className="select"
             defaultValue={product.packageType}
-            required
-            {...register('packageType')}
+            {...register('packageType', { required: 'Заполните обязательные поля!' })}
           >
             <option defaultValue={product.packageType} disabled>
               {product.packageType}
@@ -80,6 +86,14 @@ const EditForm = () => {
             defaultValue={product.description}
           />
         </nav>
+        {errors.packsNumber && typeof errors.packsNumber.message === 'string' ? (
+          <p className="errorValidate">{errors.packsNumber.message}</p>
+        ) : (
+          errors.packageType &&
+          typeof errors.packageType.message === 'string' && (
+            <p className="errorValidate">{errors.packageType.message}</p>
+          )
+        )}
         <div className="panelButton">
           <button
             className="button redButton"

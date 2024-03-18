@@ -102,6 +102,12 @@ span b {
   align-items: center
 }
 
+.errorValidate{
+  color: red;
+  font-size: 18px;
+  padding: 0;
+}
+
 
 .panelButton{
   display: flex;
